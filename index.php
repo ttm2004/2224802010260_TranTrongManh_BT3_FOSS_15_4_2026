@@ -65,7 +65,21 @@ if (isset($_POST['save'])) {
         else {
             echo "<h3> Ma trận không vuông </h3>";
         }
+
+        // Hiển thị ma trận sau khi sắp xếp giảm dần
+        $sortedMatrix = sapXepGiamDan($matrix, $m, $n);
+        echo "<h3> Ma trận sau khi sắp xếp giảm dần: </h3>";
+        echo "<table border='1'>";
+        for ($i = 0; $i < $m; $i++) {
+            echo "<tr>";
+            for ($j = 0; $j < $n; $j++) {
+                echo "<td>" . $sortedMatrix[$i][$j] . "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
     }
+    
     
 }
 ?>
