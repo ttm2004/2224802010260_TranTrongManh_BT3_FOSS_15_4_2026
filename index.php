@@ -45,7 +45,8 @@ if (isset($_POST['save'])) {
     }
     
     if($isValid){
-        echo "<h3> Ma trận đã được lưu thành công</h3>";
+        echo "<h3> Ma trận đã được lưu thành công </h3>";
+        echo "<h3>Ma trận kích thước $m x $n:</h3>";
         if($m == $n ){
             echo "<h3> Ma trận vuông </h3>";
             $det = 0;
@@ -65,6 +66,18 @@ if (isset($_POST['save'])) {
         else {
             echo "<h3> Ma trận không vuông </h3>";
         }
+
+        // Hiển thị ma trận trước khi gọi hàm sắp xếp
+        echo "<h3> Ma trận trước khi sắp xếp: </h3>";
+        echo "<table border='1'>";
+        for ($i = 0; $i < $m; $i++) {
+            echo "<tr>";
+            for ($j = 0; $j < $n; $j++) {
+                echo "<td>" . $matrix[$i][$j] . "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
 
         // Hiển thị ma trận sau khi sắp xếp giảm dần
         $sortedMatrix = sapXepGiamDan($matrix, $m, $n);
