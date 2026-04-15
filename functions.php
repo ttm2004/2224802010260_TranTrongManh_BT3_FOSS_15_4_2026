@@ -61,3 +61,17 @@ function sapXepGiamDan($matrix, $m, $n)
     //  tra về ma trận đã được sắp xếp
     return $matrix;  
 }
+
+// Hàm in ma trận
+
+function printmatrix($matrix , $m , $n) {
+    echo "<table class='matrix-table'>";
+    foreach ($matrix as $row) {
+        echo "<tr>";
+        foreach ($row as $value) {
+            echo "<td>" . $value . "</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
+}
