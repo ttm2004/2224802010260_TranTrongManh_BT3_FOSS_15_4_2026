@@ -25,3 +25,32 @@ function detLonHon2($matrix, $n)
 
     return $det;
 }
+
+
+// Hàm sắp xếp ma trận theo thứ tự giảm dần
+
+function sapXepGiamDan($matrix, $m, $n)
+{
+    $arr = [];
+
+    // chuyển ma trận thành mảng 1 chiều
+    for($i = 0; $i <$m ;$i++){
+        for($j = 0;$j < $n ;$j++){
+            $arr[] = $matrix[$i][$j];
+        }
+    }
+
+    rsort($arr); // sắp xếp mảng theo thứ tự giảm dần
+
+    // chuyển mảng 1 chiều trở lại ma trận
+
+    $index = 0;
+    for($i = 0; $i < $m ; $i++){
+        for($j = 0; $j < $n; $j++){
+            $matrix[$i][$j] = $arr[$index];
+            $index++;        
+        }
+    }
+    //  tra về ma trận đã được sắp xếp
+    return $matrix;  
+}
