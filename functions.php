@@ -3,6 +3,13 @@
 // Hàm tính định thức của ma trận vuông có kích thước lớn hơn 2x2
 function detLonHon2($matrix, $n)
 {
+    if ($n == 1) {
+        return $matrix[0][0];
+    }
+
+    if ($n == 2) {
+        return $matrix[0][0] * $matrix[1][1] - $matrix[0][1] * $matrix[1][0];
+    }
     $det = 0;
 
     for ($j = 0; $j < $n; $j++) {
