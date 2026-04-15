@@ -1,4 +1,5 @@
 <?php
+require_once 'functions.php';
 $m = $n = 0;
 $matrix = [];
 
@@ -55,35 +56,9 @@ if (isset($_POST['save'])) {
                 $det = $matrix[0][0] * $matrix[1][1] - $matrix[0][1] * $matrix[1][0];
                 echo "<h3> Ma trận 2x2 có định thức: " . $det . "</h3>";
             }
-            if($m > 2){
-                // Hàm tính định thức của ma trận vuông
-                function determinant($matrix) {
-                    $n = count($matrix);
-                    if ($n == 1) {
-                        return $matrix[0][0];
-                    }
-                    if ($n == 2) {
-                        return $matrix[0][0] * $matrix[1][1] - $matrix[0][1] * $matrix[1][0];
-                    }
-                    $det = 0;
-                    for ($j = 0; $j < $n; $j++) {
-                        $subMatrix = [];
-                        for ($i = 1; $i < $n; $i++) {
-                            $row = [];
-                            for ($k = 0; $k < $n; $k++) {
-                                if ($k != $j) {
-                                    $row[] = $matrix[$i][$k];
-                                }
-                            }
-                            $subMatrix[] = $row;
-                        }
-                        $det += pow(-1, $j) * $matrix[0][$j] * determinant($subMatrix);
-                    }
-                    return $det;
-                }
-
-                // Tính định thức của ma trận vuông lớn hơn 2x2
-                $det = determinant($matrix);
+            else if($m > 2){
+                // gọi hàm tính định thức cho ma trận có kích thước lớn hơn 2x2
+                $det = detLonHon2($matrix, $m);
                 echo "<h3> Ma trận " . $m . "x" . $n . " có định thức: " . $det . "</h3>";
             }
         }
