@@ -111,6 +111,7 @@ require_once 'functions.php';
         }
         else {
             $matrix = taoMaPhuong($n);
+            echo "<h3>Ma phương bậc $n:</h3>";
             printmatrix($matrix, $n, $n);
         }
     }
