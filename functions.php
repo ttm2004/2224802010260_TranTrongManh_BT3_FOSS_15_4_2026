@@ -116,28 +116,29 @@ function kiemtraMaPhuong($matrix, $m, $n){
 // Hàm tạo ma phương bậc n (đối với n lẻ)
 
 function taoMaPhuong($n) {
-    $magic = array_fill(0, $n, array_fill(0, $n, 0));
+    $matrix = array_fill(0, $n, array_fill(0, $n, 0)); // khởi tạo ma trận n x n với giá trị ban đầu là 0
 
-    $num = 1;
-    $i = 0;
-    $j = intval($n / 2);
+    $num = 1; // số bắt đầu từ 1
+    $i = 0; // vị trí hàng bắt đầu
+    $j = floor($n / 2); // vị trí cột bắt đầu (giữa)
 
     while ($num <= $n * $n) {
-        $magic[$i][$j] = $num;
+        $matrix[$i][$j] = $num; // gán số vào vị trí hiện tại
+        $num++; // tăng số lên 1
 
-        $num++;
-        $newi = ($i - 1 + $n) % $n;
-        $newj = ($j + 1) % $n;
+        // tính vị trí tiếp theo
+        $new_i = ($i - 1 + $n) % $n; // di chuyển lên trên (vòng lại nếu vượt quá)
+        $new_j = ($j + 1) % $n; // di chuyển sang phải (vòng lại nếu vượt quá)
 
-        if ($magic[$newi][$newj] != 0) {
-            $i = ($i + 1) % $n;
+        if ($matrix[$new_i][$new_j] != 0) { // nếu vị trí mới đã có số
+            $i++; // di chuyển xuống dưới thay vì đi lên trên
         } else {
-            $i = $newi;
-            $j = $newj;
+            $i = $new_i; // cập nhật vị trí hàng
+            $j = $new_j; // cập nhật vị trí cột
         }
     }
 
-    return $magic;
+    return $matrix; // trả về ma trận đã tạo
 }
 
 // Hàm in ma trận
