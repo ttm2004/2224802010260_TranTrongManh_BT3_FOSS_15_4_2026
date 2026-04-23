@@ -62,6 +62,84 @@ function sapXepGiamDan($matrix, $m, $n)
     return $matrix;  
 }
 
+
+// Hàm kiểm tra ma phương
+
+function kiemtraMaPhuong($matrix, $m, $n){
+    $tongmau = 0;
+
+    // tính tổng của hàng đầu tiên trong ma trận
+
+    for($i = 0 ; $i < $n ; $i++){
+        $tongmau = $matrix[0][$i] + $tongmau;
+    }
+
+    // tinh tổng của các hàng còn lại và so sánh với tổng mẫu
+    for($i = 1; $i < $m ; $i++){
+        $tonghang = 0;
+        for($j = 0; $j < $n ; $j++){
+            $tonghang = $matrix[$i][$j] + $tonghang;
+        }
+        if($tonghang != $tongmau){
+            return false; // nếu có hàng nào có tổng khác tổng mẫu thì không phải ma phương
+        }
+    }
+    // tính tổng của các cột và so sánh với tổng mẫu
+    for($j = 0; $j < $n ; $j++){
+        $tongcot = 0;
+        for($i = 0; $i < $m ; $i++){
+            $tongcot = $matrix[$i][$j] + $tongcot;
+        }
+        if($tongcot != $tongmau){
+            return false; // nếu có cột nào có tổng khác tổng mẫu thì không phải ma phương
+        }
+    }
+    // tính tổng của đường chéo chính và so sánh với tổng mẫu
+    $tongcheochinh = 0;
+    for($i = 0; $i < $m ; $i++){
+        $tongcheochinh = $matrix[$i][$i] + $tongcheochinh;
+    }
+    if($tongcheochinh != $tongmau){
+        return false; // nếu tổng đường chéo chính khác tổng mẫu thì không phải ma phương
+    }
+    // tính tổng của đường chéo phụ và so sánh với tổng mẫu
+    $tongcheophu = 0;
+    for($i = 0; $i < $m ; $i++){
+        $tongcheophu = $matrix[$i][$n - 1 - $i] + $tongcheophu;
+    }
+    if($tongcheophu != $tongmau){
+        return false; // nếu tổng đường chéo phụ khác tổng mẫu thì không phải ma phương
+    }
+    return true; // nếu tất cả các tổng đều bằng tổng mẫu thì đây là ma phương
+}
+
+// Hàm tạo ma phương bậc n (đối với n lẻ)
+
+function taoMaPhuong($n) {
+    $magic = array_fill(0, $n, array_fill(0, $n, 0));
+
+    $num = 1;
+    $i = 0;
+    $j = intval($n / 2);
+
+    while ($num <= $n * $n) {
+        $magic[$i][$j] = $num;
+
+        $num++;
+        $newi = ($i - 1 + $n) % $n;
+        $newj = ($j + 1) % $n;
+
+        if ($magic[$newi][$newj] != 0) {
+            $i = ($i + 1) % $n;
+        } else {
+            $i = $newi;
+            $j = $newj;
+        }
+    }
+
+    return $magic;
+}
+
 // Hàm in ma trận
 
 function printmatrix($matrix , $m , $n) {
